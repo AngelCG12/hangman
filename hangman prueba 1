@@ -1,0 +1,85 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+
+int main (){
+	
+	char ref[25],word[25],guess[25],orig[25];
+	
+	int indice=0,intentos=5,carac,foundletter,letterguessed=0;
+	
+printf("Do the reference:");
+gets(ref);
+
+printf("Put the word:");
+
+do{
+	carac=getch();
+	putchar('*');
+	
+	if(carac==13)
+	break;
+	word[indice]=toupper(carac);
+	orig[indice]=toupper(carac);
+	guess[indice]='_';
+		indice++;
+} while(1);
+printf("\n");
+word[indice]='\x0';
+orig[indice]='\x0';
+guess[indice]='\x0';
+
+
+do {
+	printf("The reference is: %s\n",ref);
+	int i=strlen(word);
+		printf("the word to guess is of %d letters:",i);
+		puts(guess);
+		printf("put a letter");
+		
+		carac=toupper(getchar());
+			printf("\n");
+			foundletter=0;
+			for (indice=0; indice<strlen(word); indice++);{
+			if (word[indice] !='*')
+				if (word [indice] ==carac){
+					foundletter=1;
+					letterguessed++;
+			guess[indice]=word[indice];
+			word[indice]='*';
+					
+				}
+			
+			}
+			
+} 
+if(foundletter==1){
+	puts("The letter is correct");
+ }else if(intentos==1){
+		
+		printf("You are wrong");
+		
+	}
+	if (foundletter==1){
+		printf("The letter is correct");
+		
+		if(letterguessed==strlen(word)){
+			printf("You guessed the word");
+			puts(guess);
+		
+		}
+} else{
+		if(intentos==1){
+			printf("You failed");
+			pirntf("The correct word was %s",orig);
+	
+		}
+	} else {
+		printf("Incorrect letter");
+		intentos--;
+		printf("You have %i tries \n'n", intentos);
+	}
+while(1);
+return 0;
+}
